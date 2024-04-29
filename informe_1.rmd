@@ -9,35 +9,22 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Introducción
+## R Markdown
 
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-
-Los objetos fueron guardados en formato R y Stata.
-
-```{r, eval=FALSE}
-
-# Cargar los objetos RDS
-eps_04 <- readRDS("eps_04.rds")
-eps_06 <- readRDS("eps_06.rds")
-eps_09 <- readRDS("eps_09.rds")
-eps_15 <- readRDS("eps_15.rds")
-eps_20_cont <- readRDS("eps_20_cont.rds")
-eps_20_pres <- readRDS("eps_20_pres.rds")
-eps_20_rent <- readRDS("eps_20_rent.rds")
-
-# Guardar como archivos DTA
-write_dta(eps_04, "eps_04.dta")
-write_dta(eps_06, "eps_06.dta")
-write_dta(eps_09, "eps_09.dta")
-write_dta(eps_15, "eps_15.dta")
-write_dta(eps_20_cont, "eps_20_cont.dta")
-write_dta(eps_20_pres, "eps_20_pres.dta")
-write_dta(eps_20_rent, "eps_20_rent.dta")
-
+```{r cars}
+summary(cars)
 ```
 
-# Proyecciones.
+## Including Plots
 
-Consolidar en una única BBDD.
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
