@@ -1,0 +1,43 @@
+---
+title: 'Informe 1: Encuesta Protección Social de Hogares'
+author: "Matías Deneken"
+date: "2024-04-29"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introducción
+
+
+
+
+Los objetos fueron guardados en formato R y Stata.
+
+```{r, eval=FALSE}
+
+# Cargar los objetos RDS
+eps_04 <- readRDS("eps_04.rds")
+eps_06 <- readRDS("eps_06.rds")
+eps_09 <- readRDS("eps_09.rds")
+eps_15 <- readRDS("eps_15.rds")
+eps_20_cont <- readRDS("eps_20_cont.rds")
+eps_20_pres <- readRDS("eps_20_pres.rds")
+eps_20_rent <- readRDS("eps_20_rent.rds")
+
+# Guardar como archivos DTA
+write_dta(eps_04, "eps_04.dta")
+write_dta(eps_06, "eps_06.dta")
+write_dta(eps_09, "eps_09.dta")
+write_dta(eps_15, "eps_15.dta")
+write_dta(eps_20_cont, "eps_20_cont.dta")
+write_dta(eps_20_pres, "eps_20_pres.dta")
+write_dta(eps_20_rent, "eps_20_rent.dta")
+
+```
+
+# Proyecciones.
+
+Consolidar en una 
