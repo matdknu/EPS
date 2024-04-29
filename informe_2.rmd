@@ -1,0 +1,111 @@
+---
+title: 'Informe 1: Encuesta Protección Social de Hogares'
+author: "Matías Deneken"
+date: "Destinado a Alejandra Inostroza"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introducción
+
+Para los propositos solicitados, se realizó un adecuación de la Encuesta Protección Social (EPS) específicamente las olas del 2004, 2006, 2009, 2015 y 2016.
+
+Una primera etapa buscó renombrar las variables de acuerdo a lo solicitado [**aquí**](https://www.dropbox.com/scl/fi/lujwecrqvs6pza08093ul/Rename-variables.docx?rlkey=mdn8s825i83jrltojfyp7tddf&dl=0). Esto con el fin de darle un seguimiento longitudinal a las variables señaladas en el documento.
+
+Esto se encuentran en diferentes scripts:
+
+-   Para la bbdd del 2004 se puede encontrar su procesamiento pinchando [**aquí**](https://github.com/matdknu/EPS/blob/main/process/base2004.R)
+
+-   Para la bbdd del 2006 se puede encontrar su procesamiento pinchando [**aquí**](https://github.com/matdknu/EPS/blob/main/process/base2006.R)
+
+-   Para la bbdd del 2009 se puede encontrar su procesamiento pinchando [**aquí**](https://github.com/matdknu/EPS/blob/main/process/base2009.R)
+
+-   Para la bbdd del 2015 se puede encontrar su procesamiento pinchando [**aquí**](https://github.com/matdknu/EPS/blob/main/process/base2015.R)
+
+-   Para la bbdd del 2020 se puede encontrar su procesamiento pinchando [**aquí**](https://github.com/matdknu/EPS/blob/main/process/base2020.R)
+
+Una segunda etapa contrastó que tipos de variables se encontraban de forma similar en cada una de las BBDD.
+
+A partir del procesamiento realizado por mí, y de acuerdo a la información proporcionada por el procesamiento de la asistente anterior y mis correciones, esto quedaría así:
+
+| Variable   | 2004 | 2006 | 2009 | 2015 |
+|------------|------|------|------|------|
+| folio_n    | ✓    | ✓    | ✓    | ✗    |
+| region     | ✓    | ✓    | ✓    | ✗    |
+| fact_exp   | ✓    | ✓    | ✗    | ✗    |
+| parentesco | ✓    | ✓    | ✓    | ✓    |
+| sexo       | ✓    | ✓    | ✓    | ✗    |
+| edad       | ✓    | ✓    | ✓    | ✗    |
+| ecivil     | ✓    | ✓    | ✓    | ✓    |
+| asiste     | ✓    | ✓    | ✗    | ✓    |
+| neduc      | ✓    | ✓    | ✗    | ✗    |
+| fineduc    | ✗    | ✗    | ✗    | ✓    |
+| ncarreras  | ✓    | ✓    | ✓    | ✓    |
+| prueba     | ✓    | ✗    | ✗    | ✗    |
+| ingotros   | ✓    | ✓    | ✗    | ✗    |
+| ingnlabe   | ✓    | ✓    | ✗    | ✗    |
+| vivienda   | ✓    | ✓    | ✓    | ✓    |
+| montoviv   | ✓    | ✓    | ✓    | ✓    |
+| ple        | ✓    | ✓    | ✗    | ✗    |
+| pse        | ✓    | ✓    | ✓    | ✓    |
+| disc       | ✓    | ✓    | ✗    | ✗    |
+| disca      | ✓    | ✓    | ✗    | ✗    |
+| discph     | ✗    | ✗    | ✗    | ✓\*  |
+| ncasado    | ✓    | ✓    | ✓    | ✓    |
+| hogar      | ✓    | ✗    | ✓    | ✓    |
+| npareja    | ✓    | ✓    | ✗    | ✗    |
+| edadpareja | ✓    | ✓    | ✓    | ✓    |
+| edadconv   | ✓    | ✓    | ✓    | ✓    |
+| vivepareja | ✓    | ✓    | ✗    | ✗    |
+| nhijos     | ✓    | ✓    | ✓    | ✓    |
+| sexoh      | ✓    | ✓    | ✓    | ✓\*  |
+| anoh       | ✓    | ✓    | ✓    | ✓\*  |
+| hcasa      | ✓    | ✓    | ✓    | ✓\*  |
+| nwork      | ✓    | ✓    | ✓    | ✓    |
+| anoiw      | ✓    | ✓    | ✓    | ✓    |
+| anotw      | ✓    | ✓    | ✓    | ✓    |
+| situationw | ✓    | ✓    | ✓    | ✗    |
+| tipow      | ✓    | ✓    | ✓    | ✓    |
+| catw       | ✓    | ✓    | ✓    | ✓    |
+| contrato   | ✓    | ✓    | ✓    | ✓    |
+| inglab     | ✓    | ✓    | ✓    | ✓    |
+| hworke     | ✓    | ✓    | ✓    | ✓    |
+| inact      | ✓    | ✓    | ✗    | ✗    |
+| programa   | ✓    | ✓    | ✓    | ✓    |
+| npersona   | ✓    | ✓    | ✓    | ✓    |
+| perteneceh | ✓    | ✓    | ✓    | ✓    |
+| edadi      | ✓    | ✓    | ✓    | ✓    |
+| trabajoi   | ✓    | ✓    | ✓    | ✓    |
+| contratoi  | ✓    | ✗    | ✗    | ✗    |
+| inglabi    | ✓    | ✓    | ✓    | ✓    |
+| hworki     | ✓    | ✗    | ✗    | ✗    |
+| ingnlabi   | ✓    | ✓    | ✓    | ✓    |
+| factor_EPS | ✗    | ✗    | ✗    | ✓    |
+
+\
+
+
+
+A lo largo de los años estudiados, varias variables han sido consistentemente usadas, modificadas o eliminadas, reflejando cambios en la estructuración de datos o en las necesidades de información.
+
+### **Variables Consistentes**
+
+Algunas variables han aparecido de manera constante a lo largo de todos los años analizados, como **`parentesco`**, **`ecivil`**, **`vivienda`**, y **`ncasado`**, lo que indica su importancia sostenida en el estudio.
+
+### **Eliminaciones y Cambios**
+
+-   **Eliminaciones Notables**: Variables como **`fact_exp`**, **`prueba`**, **`ingotros`**, **`ple`**, y **`disc`** fueron eliminadas en años posteriores, posiblemente debido a cambios en la metodología de recopilación de datos o prioridades de investigación.
+
+-   **Renombramientos**: Se observaron cambios de nombre en algunas variables para clarificar su propósito o reflejar mejor la información que representan, como **`disca`** a **`discpa`** y **`contrato`** a **`contratow`**.
+
+### **Adiciones y Desagregaciones**
+
+-   **Nuevas Variables en 2015**: Se introdujeron nuevas variables como **`fineduc`**, **`factor_EPS`**, y series desagregadas como **`discph1-5`**, indicando un enfoque en mayor detalle y especificidad en los datos recogidos.
+
+-   **Detalles Añadidos**: La aparición de múltiples variables desagregadas en 2015 como **`sexoh1-5`** y **`anoh1-5`** muestra un esfuerzo por capturar más detalles y variabilidad dentro de las categorías existentes.
+
+
+Este análisis revela una evolución en la recopilación y presentación de datos a lo largo del tiempo, con un esfuerzo por adaptar el conjunto de datos a nuevas necesidades analíticas y metodológicas, manteniendo algunas variables fundamentales mientras se introducen nuevas para una comprensión más profunda de los temas estudiados.

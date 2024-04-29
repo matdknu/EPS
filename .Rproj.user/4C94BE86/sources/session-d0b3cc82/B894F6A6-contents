@@ -189,6 +189,8 @@ eps_09 <- base2009_combined %>% select(folio_n20,
 
 base2015_combined$factor_EPS2015
 
+base2015_combined
+
 eps_15 <- base2015_combined %>% rename(ncasado2015 = ncasadp2015,
                                        npersona2015 = nperson2015)%>%  select(folio_n20,
                                        #region2009, no aparece.
